@@ -1,0 +1,34 @@
+services:
+  collector:
+     image: auviknetworks/collector:latest
+     container_name: "auvik"
+     hostname: "auvik"
+     environment:
+        AUVIK_USERNAME: ""
+        AUVIK_API_KEY: ""
+        AUVIK_DOMAIN_PREFIX: ""
+     cap_add:
+        - NET_ADMIN
+     volumes:
+        - '/data/auvik/config/:/config/'
+        - '/data/auvik/etc/:/etc/auvik/'
+        - '/data/auvik/logs/:/usr/share/agent/logs/'
+     restart: unless-stopped
+     logging:
+       driver: json-file
+       options:
+         max-size: "100m"
+         max-file: "2"
+
+  pfsense:
+    image: ubuntu:22.04
+    volumes:
+      - ./snmpd.conf.template:/etc/snmp/snmpd.conf.template
+      - ./entrypoint.sh:/entrypoint.sh
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    scale: 10
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "2"
