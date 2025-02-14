@@ -10,7 +10,7 @@ sysObjectID .1.3.6.1.4.1.12325.1.1.2.1.1
 syscontact nospam@example.com
 
 # System Name
-sysname ${SERVICE_NAME}.example.com
+sysname ${SERVICE_NAME}.hillzere.com
 
 # System Location
 syslocation rack8
