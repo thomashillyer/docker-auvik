@@ -4,9 +4,9 @@ services:
      container_name: "auvik"
      hostname: "auvik"
      environment:
-        AUVIK_USERNAME: ""
-        AUVIK_API_KEY: ""
-        AUVIK_DOMAIN_PREFIX: ""
+        AUVIK_USERNAME: ${AVUSER}
+        AUVIK_API_KEY: ${AVKEY}
+        AUVIK_DOMAIN_PREFIX: ${AVPREFIX}
      cap_add:
         - NET_ADMIN
      volumes:
