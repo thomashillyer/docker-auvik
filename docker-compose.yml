@@ -25,7 +25,8 @@ services:
     volumes:
       - ./snmpd.conf.template:/etc/snmp/snmpd.conf.template
       - ./entrypoint.sh:/entrypoint.sh
-    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    # entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    entrypoint: ["/bin/bash", "-c", "chmod +x /entrypoint.sh && /entrypoint.sh"]
     scale: 10
     logging:
       driver: json-file
